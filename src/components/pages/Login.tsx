@@ -16,11 +16,13 @@ export const Login = ({ onLogin }: LoginProps) => {
     const [password, setPassword] = useState('');
 
     const handleLoginClick = () => {
-    onLogin();
-    };
+     if (username === 'admin' && password === 'admin') {
+       onLogin();  
+      } 
+    
+  };
 
-    return (
-
+  return (
     <Container maxWidth="xs" sx={{ textAlign: 'center', marginTop: '50px' }}>
       
       <Typography variant="h4">

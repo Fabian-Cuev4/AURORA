@@ -1,21 +1,41 @@
 import { useState } from 'react';
+
 import { Login } from './components/pages/Login';
+import { Home } from './components/pages/Home';
+import { PokemonPage } from './components/pages/PokemonPage';
 
 function App() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  if (!isLoggedIn) {
-     return <Login onLogin={() => setIsLoggedIn(true)} />;
-  }
+  type View = 'login' | 'home' | 'pokemon';
   
+  // Login default
+  const [currentView, setCurrentView] = useState<View>('login');
+
+  // 2. Nuestro "enrutador" mínimo y funcional. Decide qué devolver según el estado.
+  const renderView = () => {
+    switch (currentView) {
+      case 'login':
+        return <Login onLogin={() => setCurrentView('home')} />;
+        
+      case 'home':
+        return (
+          <Home 
+            onLogout={() => setCurrentView('login')} 
+            onGoToPokemon={() => setCurrentView('pokemon')}
+          />
+        );
+        
+      case 'pokemon':
+        return <PokemonPage onBack={() => setCurrentView('home')} />;
+        
+      default:
+        return <Login onLogin={() => setCurrentView('home')} />;
+    }
+  };
+
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>¡Bienvenido al Home!</h1>
-      <p>Aquí irán los dos botones de tu actividad.</p>
-      
-       <button onClick={() => setIsLoggedIn(false)}>Cerrar Sesión</button>
-    </div>
+    <>
+      {renderView()}
+    </>
   );
 }
 
