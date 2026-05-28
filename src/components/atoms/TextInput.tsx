@@ -23,17 +23,3 @@ export const TextInput = ({ label, value, type = "text", onChange }: TextInputPr
   );
   
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-<TextField id="filled-basic" label="Filled" variant="filled" />
