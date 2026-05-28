@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import { PokemonCard } from '../molecules/PokemonCard';  
-import { ActionButton } from '../atoms/ActionButton';      
-
+import { ActionButton } from '../atoms/ActionButton';   
+ 
 interface PokemonPageProps {
   onBack: () => void;
+  onGoToTable: () => void; 
 }
 
-export const PokemonPage = ({ onBack }: PokemonPageProps) => {
+export const PokemonPage = ({ onBack, onGoToTable }: PokemonPageProps) => {
   // Save Pokémon API
   const [pokemons, setPokemons] = useState<any[]>([]);
 
@@ -45,6 +46,7 @@ export const PokemonPage = ({ onBack }: PokemonPageProps) => {
       </Box>
 
        <ActionButton text="Volver al Home" onClick={onBack} />
+       <ActionButton text="Ver Tabla de Datos" onClick={onGoToTable} />
       
     </Container>
   );
