@@ -10,8 +10,7 @@ function App() {
   // Login default
   const [currentView, setCurrentView] = useState<View>('login');
 
-  // 2. Nuestro "enrutador" mínimo y funcional. Decide qué devolver según el estado.
-  const renderView = () => {
+   const renderView = () => {
     switch (currentView) {
       case 'login':
         return <Login onLogin={() => setCurrentView('home')} />;
